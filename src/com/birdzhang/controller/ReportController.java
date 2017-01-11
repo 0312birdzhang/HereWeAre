@@ -16,7 +16,7 @@ import com.jfinal.core.Controller;
  */
 public class ReportController extends Controller{
 	
-	
+	@Before(ReportValidate.class)
 	public void index(){
 		String imei = getPara("imei");
 		String nickName = getPara("nickname");

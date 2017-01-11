@@ -15,7 +15,15 @@ public class ReportValidate extends Validator{
 	@Override
 	protected void validate(Controller c) {
 		validateRequiredString("imei", "tips", "imei不能为空");
-		validateRequiredString("token", "tips", "imei不能为空");
+		validateRequiredString("token", "tips", "token不能为空");
+		String key = getActionKey();
+		if(key.equals("index")){
+			validateRequiredString("nickname", "tips", "nickname不能为空");
+			validateRequiredString("latitude", "tips", "latitude不能为空");
+			validateRequiredString("longtude", "tips", "longtude不能为空");
+			validateRequiredString("ostype", "tips", "ostype不能为空");
+		}
+		
 	}
 
 	@Override
