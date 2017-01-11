@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="hereweare" default="zip_all" basedir=".">
+	<description> deploy demo</description>
+	<!-- set global properties for this build -->
+	<property name="source" location="WebRoot" />
+	<property name="dist" location="target" />
+	<property name="app" value="hereweare" />
+	
+	<target name="clean" description="clean up">
+		<!-- Delete ${dist}/zip directory trees -->
+		  <echo message="Delete ${dist} begin..." />
+		  <!--<delete dir="${dist}/*" /> -->
+		  <delete verbose="true" includeemptydirs="true">
+		            <fileset dir="${dist}">
+		                <include name="**/*"/>
+						<include name="WEB-INF/lib/**/*.*" />
+		            </fileset>
+		        </delete>
+		  <echo message="Delete ${dist} end..." />
+	</target>
+	
+	<target name="makedir">
+		<echo message="mkdir ${dist}/zip/${app}" />
+		<mkdir dir="${dist}/zip/${app}" />
+	</target>
+	
+	<target name="dist" depends="clean,makedir" description="dist">
+		<!-- 复制所有运行文件到target目录
+		<echo message="##########复制所有:  ${source} to ${dist}/${app}!" />
+		<copy todir="${dist}/${app}" >
+			<fileset dir="${source}" >
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		 -->
+	</target>
+	
+	<target name="zip_clear" depends="dist">
+		<!-- 增量复制必须的文件到zip目录 -->
+		<echo message="##########增量复制：  ${dist}/${app} to ${dist}/zip/${app}!" />
+		<copy todir="${dist}/zip/${app}" >
+			<fileset dir="${source}" >
+				<include name="**/*.jsp" />
+				<include name="**/*.html" />
+				<include name="**/*.class" />
+				<include name="WEB-INF/classes/**/*.class" />
+				<include name="**/*.xml"/>
+				<!--<include name="**/*.txt"/>-->
+				<include name="**/*.ico" />
+				<!--<include name="**/*.properties"/>-->
+				<exclude name="**/web.xml"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="zip_all" depends="zip_clear">
+		<!-- <zip destfile="${dist}/zip/${app}.zip" basedir="${dist}/zip"></zip> -->
+		<zip destfile="E:/zip/${app}.zip" basedir="${dist}/zip"></zip>
+	</target>
+</project>
