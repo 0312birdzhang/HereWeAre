@@ -31,6 +31,23 @@ public class User extends BaseUser<User> {
 		Db.update(sql, longitude,latitude,imei,token);
 	}
 	
-	
+	/**
+	 * 寻找附件的人
+	 * @author debo.zhang
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param scale
+	 * @param osType
+	 * @return
+	 */
+	public Page<User> nearBy(int pageNumber, int pageSize,Integer scale,String osType){
+		String sql = "SELECT id, (3959 * acos(cos(radians(37)) * cos(radians(latitude)) * cos(radians(longitude) - radians(122)) + sin(radians(22)) * sin(radians(latitude )))) AS distance,"
+				+ "latitude,longitude,nickName,osType";
+		String sqlExceptSelect = 
+					"FROM `user` " +
+				"HAVING distance < ? and osType = ?" +
+				"ORDER BY distance";
+		return paginate(pageNumber, pageSize, sql,sqlExceptSelect,scale,osType);
+	}
 	
 }
