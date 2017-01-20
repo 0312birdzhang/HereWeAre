@@ -33,20 +33,20 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		return get("nickName");
 	}
 
-	public void setLongitude(java.lang.String longitude) {
-		set("longitude", longitude);
-	}
-
-	public java.lang.String getLongitude() {
-		return get("longitude");
-	}
-
 	public void setLatitude(java.lang.String latitude) {
 		set("latitude", latitude);
 	}
 
 	public java.lang.String getLatitude() {
 		return get("latitude");
+	}
+
+	public void setLongitude(java.lang.String longitude) {
+		set("longitude", longitude);
+	}
+
+	public java.lang.String getLongitude() {
+		return get("longitude");
 	}
 
 	public void setToken(java.lang.String token) {

@@ -1,5 +1,6 @@
 package com.demo.common.config;
 
+import com.birdzhang.controller.KuaidiController;
 import com.birdzhang.controller.LoadController;
 import com.birdzhang.controller.ReportController;
 import com.demo.common.model._MappingKit;
@@ -35,7 +36,8 @@ public class DemoConfig extends JFinalConfig {
 	public void configRoute(Routes me) {
 		me.add("/", IndexController.class);	// 第三个参数为该Controller的视图存放路径
 		me.add("/report",ReportController.class); //上报
-		me.add("/load",LoadController.class); //加载
+		me.add("/load",LoadController.class); 
+		me.add("/kuaidi",KuaidiController.class);
 	}
 	
 	public static C3p0Plugin createC3p0Plugin() {
